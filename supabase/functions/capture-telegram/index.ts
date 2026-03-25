@@ -84,14 +84,37 @@ Deno.serve(async (request) => {
   if (!message || !text || !chatId) {
     return response();
   }
+// Logs to find out the Telegram chat ID
+  // console.log("telegram incoming message", {
+  //   chat_id: String(chatId),
+  //   chat_type: message.chat?.type ?? null,
+  //   username: message.from?.username ?? null,
+  //   text,
+  // });
 
   if (shouldIgnoreCommand(text)) {
     return response();
   }
 
-  if (TELEGRAM_ALLOWED_CHAT_ID && String(chatId) !== TELEGRAM_ALLOWED_CHAT_ID) {
-    return response();
-  }
+  // logs to check if the telegram chat ID is actually being enforced
+  // if (TELEGRAM_ALLOWED_CHAT_ID) {
+  //   const isAllowedChat = String(chatId) === TELEGRAM_ALLOWED_CHAT_ID;
+  //   console.log("telegram allowlist check", {
+  //     allowed_chat_configured: true,
+  //     chat_id: String(chatId),
+  //     allowed: isAllowedChat,
+  //   });
+
+  //   if (!isAllowedChat) {
+  //     return response();
+  //   }
+  // } else {
+  //   console.log("telegram allowlist check", {
+  //     allowed_chat_configured: false,
+  //     chat_id: String(chatId),
+  //     allowed: true,
+  //   });
+  // }
 
   try {
     const metadata = await captureThought({
@@ -116,7 +139,8 @@ Deno.serve(async (request) => {
     }
 
     return response();
-  } catch (error) {
+  }
+  catch (error) {
     console.error("Failed to capture Telegram message", error);
     return new Response("error", { status: 500 });
   }
