@@ -2,6 +2,7 @@
   "version": "5",
   "specifiers": {
     "jsr:@supabase/functions-js@*": "2.100.0",
+    "jsr:@supabase/functions-js@2.100.0": "2.100.0",
     "npm:@hono/mcp@0.1.1": "0.1.1_@modelcontextprotocol+sdk@1.24.3__zod@4.1.13_hono@4.9.2_zod@4.1.13",
     "npm:@modelcontextprotocol/sdk@1.24.3": "1.24.3_zod@4.1.13",
     "npm:@supabase/supabase-js@2.47.10": "2.47.10",
@@ -721,6 +722,7 @@
   },
   "workspace": {
     "dependencies": [
+      "jsr:@supabase/functions-js@2.100.0",
       "npm:@hono/mcp@0.1.1",
       "npm:@modelcontextprotocol/sdk@1.24.3",
       "npm:@supabase/supabase-js@2.47.10",
